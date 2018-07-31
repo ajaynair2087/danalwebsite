@@ -155,9 +155,6 @@
     <Reference Include="BouncyCastle.Crypto">
       <HintPath>..\..\..\..\Downloads\bin\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="ChilkatDotNet46, Version=9.5.0.73, Culture=neutral, PublicKeyToken=eb5fc1fc52ef09bd, processorArchitecture=AMD64">
-      <HintPath>..\packages\chilkat-x64.9.5.0.73\lib\net462\ChilkatDotNet46.dll</HintPath>
-    </Reference>
     <Reference Include="DanalJSONApp">
       <HintPath>..\..\..\..\Downloads\bin\DanalJSONApp.dll</HintPath>
     </Reference>
