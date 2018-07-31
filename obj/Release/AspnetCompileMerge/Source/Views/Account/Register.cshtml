@@ -1,0 +1,207 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="form-group">
+            <div class="input-group">
+                <label for="registerMobileTB">Mobile Number</label>
+                <span>
+                    <input type="text" name="registerMobileTB" id="registerMobileTB" class="registerMobileTB form-control" placeholder="Mobile Number" aria-describedby="basic-addon2" /> 
+                </span> <br/>
+                <span class="btn btn-primary" style="margin-top: 10px" onclick="sendOTP($('#registerMobileTB').val())">Send OTP</span>
+                <h6 class="hide invalidRegisterNumberMsg" style="color: #ff0000">Invalid Mobile Number. Please try again!</h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row enterRegisterOTPSection hide">
+    <div class="col-xs-12 col-sm-12">
+        <div class="form-group">
+            <div class="input-group">
+                <h5 for="otbTB">
+                    Please Enter the OTP sent to:
+                    <span class="phoneRegisterOTP" style="font-weight: bold; padding-left:5px"></span>
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12">
+        <div class="form-group">
+            <div class="input-group">
+                <label for="otpRegisterTB">OTP Number</label>
+                <span>
+                    <input type="text" name="otpRegisterTB" id="otpRegisterTB" class="otpRegisterTB form-control" placeholder="Enter OTP" aria-describedby="basic-addon2" />
+                </span>
+                <h6 class="hide invalidRegisterOTPMsg" style="color: #ff0000">Invalid OTP. Please try again!</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="btn btn-primary" onclick="ValidateOTP($('#otpRegisterTB').val())">Validate OTP</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="autoFillSection hide">
+    <div class="row">
+        <div class="form-group" style="padding-left:15px">
+            <div class="input-group">
+                <input type="checkbox" id="autofillchkBox" name="autofillchkBox" data-yourparameter1="test" onchange="autofill(this)" /><label style="padding-left: 5px" for="autofillchkBox">Autofill?</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <label for="FNameTB">First Name</label>
+                    <span>
+                        <input type="text" name="FNameTB" id="FNameTB" class="FNameTB form-control" placeholder="First Name" aria-describedby="basic-addon2" />
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <label for="LNameTB">Last Name</label>
+                    <span>
+                        <input type="text" name="LNameTB" id="LNameTB" class="LNameTB form-control" placeholder="Last Name" aria-describedby="basic-addon2" />
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <label for="emailTB">E-mail</label>
+                    <span>
+                        <input type="text" name="emailTB" id="emailTB" class="emailTB form-control" placeholder="E-mail" aria-describedby="basic-addon2" />
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <label for="addressTB">Street Address 1</label>
+                    <span>
+                        <input type="text" name="addressTB" id="addressTB" class="addressTB form-control" placeholder="Street Address" aria-describedby="basic-addon2" />
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <label for="addressTB2">Street Address 2</label>
+                    <span>
+                        <input type="text" name="addressTB2" id="addressTB2" class="addressTB2 form-control" placeholder="Street Address" aria-describedby="basic-addon2" />
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <label for="reportTypeCB">City</label>
+                    <span>
+                        <input type="text" name="CityTB" id="CityTB" class="CityTB form-control" placeholder="City" aria-describedby="basic-addon2" />
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row register_terms">
+        <div class="col-xs-12 col-md-12">
+            By logging in, you agree to ConsoleYourself's <a href="/Account/Terms">Terms and Condtions</a>.
+        </div>
+    </div>
+    <div class="row" style="padding-top:15px">
+        <div class="col-xs-12 col-md-12">
+            <button class="btn btn-success" onclick="match_and_attributes()">Proceed</button>
+        </div>
+    </div>
+    <div class="row hide apiErrorMessage">
+        <div class="col-xs-12 col-md-12">
+            <h6 style="color: #ff0000">Invalid API Request. Please try again!</h6>
+        </div>
+    </div>
+    <div class="row hide customerCareErrorMessage">
+        <div class="col-xs-12 col-md-12">
+            <h6 style="color: #ff0000">Please contact Customer Care</h6>
+        </div>
+    </div>
+</div>
+
+<div class="modal splash fade splash-2 splash-ef-4 in login" id="consumer_info_api_splash" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">Explicit Consent</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row hide">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="postalCodeCheckTB" id="postalCodeCheckTB" class="postalCodeTB form-control" placeholder="Postal Code" aria-describedby="basic-addon2" />
+                                <input type="text" name="firstNameCheckTB" id="firstNameCheckTB" class="firstNameCheckTB form-control" placeholder="Postal Code" aria-describedby="basic-addon2" />
+                                <input type="text" name="lastNameCheckTB" id="lastNameCheckTB" class="lastNameCheckTB form-control" placeholder="Postal Code" aria-describedby="basic-addon2" />
+                                <input type="text" name="streetCheckTB" id="streetCheckTB" class="streetCheckTB form-control" placeholder="Postal Code" aria-describedby="basic-addon2" />
+                                <input type="text" name="cityCheckTB" id="cityCheckTB" class="cityCheckTB form-control" placeholder="Postal Code" aria-describedby="basic-addon2" />
+                                <input type="text" name="street2CheckTB" id="cityCheckTB" class="cityCheckTB form-control" placeholder="Postal Code" aria-describedby="basic-addon2" />
+                                <input type="text" name="emailCheckTB" id="cityCheckTB" class="cityCheckTB form-control" placeholder="Postal Code" aria-describedby="basic-addon2" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="checkbox" id="explicitContentChkBox" name="explicitContentChkBox" /><label style="padding-left: 5px" for="explicitContentChkBox">Do you agree to the <a href="/Account/Terms">Terms and Condtions</a> ?</label>
+                                <h6 class="hide explicitContentChkBoxNotChecked" style="color: #ff0000">Please agree to the terms and conditions clause set above to continue.</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <label for="postalCodeTB">Please Enter Billing Postal Code for secondary authentication</label>
+                                <span>
+                                    <input type="text" name="postalCodeTB" id="postalCodeTB" class="postalCodeTB form-control" placeholder="Postal Code" aria-describedby="basic-addon2" />
+                                </span>
+                                <h6 class="hide noPostalCodeMsg" style="color: #ff0000">No postal code entered. Please enter a valid postal code</h6>
+                                <h6 class="hide mismatchPostalCodeMsg" style="color: #ff0000">Postal Code does not match. Please try again!</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <button class="btn btn-primary btnVerifyPostalCode" onclick="runConsumerInfoAPI($('#postalCodeTB').val())">Verify</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

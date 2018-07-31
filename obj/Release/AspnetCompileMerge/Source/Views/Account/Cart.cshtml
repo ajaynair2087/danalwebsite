@@ -1,0 +1,76 @@
+﻿@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Web;
+@using System.Web.Mvc;
+@using System.Net;
+@using System.IO;
+@using System.Security.Cryptography;
+@using System.Text;
+@using DanalJSONApp.Models;
+@using System.Web.Script.Serialization;
+@using Newtonsoft.Json;
+
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+@{
+    ShopItems[] _existingItemsInCartArray2 = { };
+    string serItemsList2 = "";
+    string decodedSerItemList2 = "";
+}
+
+<h2>Cart</h2>
+<div class="row" style="padding-top:20px">
+
+    @if (Request.Cookies["isAuthenticated"] != null)
+    {
+        if (Request.Cookies["isAuthenticated"].Value.Equals("true"))
+        {
+            if (Request.Cookies["itemsList"] != null)
+            {
+                {
+                    serItemsList2 = Request.Cookies["itemsList"].Value;
+                    decodedSerItemList2 = HttpUtility.UrlDecode(serItemsList2);
+                    _existingItemsInCartArray2 = JsonConvert.DeserializeObject<ShopItems[]>(decodedSerItemList2);
+                }
+                foreach (ShopItems item in _existingItemsInCartArray2)
+                {
+                    <div class="row" style="margin-top: 10px; margin-bottom: 10px">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3">
+                                <img src="@item.ImageURL" class="img-responsive" />
+                            </div>
+                            <div class="col-xs-9">
+                                <h6 style="font-weight: bold; font-size: 14px"> @item.Name</h6>
+                                <p>@item.Description</p>
+                                <div class="col-xs-3">
+                                    <span>@item.Price</span>
+                                </div>
+                                <div class="col-xs-3">
+                                    <input type="number" name="points" step="1" value="1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+
+            }
+        }
+        else
+        {
+            //login again
+        }
+    }
+</div>
+<div class="row pull-right">
+    <h5 style="font-weight:400; font-size: 14px">Subtotal: <span style="font-weight: 400; font-size: 14px;text-align: right">$400</span> </h5 > 
+    <h5 style="font-weight: 400; font-size: 14px">Shipping Cost: <span  style="font-weight: 400; font-size: 14px;text-align: right">$20</span> </h5> 
+    <h5 style="font-weight: 400; font-size: 14px">Taxes: <span style="font-weight: 400; font-size: 14px;text-align: right">$20</span> </h5> 
+    <h5 style="font-weight: bold; font-size: 14px">Total: <span style="font-weight: 400; font-size: 14px;text-align: right">$480</span></h5> 
+</div>

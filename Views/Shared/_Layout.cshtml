@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -ConsoleYourself</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- Include JQuery JS Files. -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.0-rc.2/jquery-ui.min.js" integrity="sha256-55Jz3pBCF8z9jBO1qQ7cIf0L+neuPTD1u7Ytzrp2dqo=" crossorigin="anonymous"></script>
+    <!-- Include Bootstrap JS Files. -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="/Scripts/document.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/Scripts/home.js" type="text/javascript"></script>
+    <script src="/Scripts/register.js" type="text/javascript"></script>
+    <script src="/Scripts/login.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("ConsoleYourself", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                @if (Request.Cookies["isAuthenticated"] != null)
+                {
+                    if (Request.Cookies["isAuthenticated"].Value.Equals("true"))
+                    {
+                        <ul class="nav navbar-nav">
+                            <li><a href="/Account/Cart">Cart</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle_top_bar" data-toggle="modal" data-target="#login_splash" data-options="splash-2 splash-ef-4">Login</a>
+                            </li>
+                            <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                            <li><a href="/Account/Cart">Cart</a></li>
+                        </ul>
+                    }
+                }
+                else
+                {
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle_top_bar" data-toggle="modal" data-target="#login_splash" data-options="splash-2 splash-ef-4">Login</a>
+                        </li>
+                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                        <li><a href="/Account/Cart">Cart</a></li>
+                    </ul>
+                }
+
+                @if (Request.Cookies["isAuthenticated"] != null)
+                {
+                    if (Request.Cookies["isAuthenticated"].Value.Equals("true"))
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                @if (Request.Cookies["Greeting"] != null)
+                                {
+                                <a href="#" class="dropdown-toggle_top_bar loginname" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@HttpUtility.UrlDecode(@Request.Cookies["Greeting"].Value)</a>
+                                }
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        @* <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>*@
+    </div>
+
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<div class="modal splash fade splash-2 splash-ef-4 in login" id="login_splash" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">Login/Register</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <h5 style="font-weight: bold; font-size:14px">New Member?<span><a style="font-size:14px; color:#0026ff; padding-left:5px" href="/Account/Register">Register</a></span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <label for="mobileTB">10 Digit Mobile Number</label>
+                                <span>
+                                    <input type="tel" name="mobileTB" id="mobileTB" class="mobileTB form-control" placeholder="Enter 10 Digit Mobile Number" aria-describedby="basic-addon2" />
+                                </span>
+                                <h6 class="hide invalidNumberMsg" style="color: #ff0000">Invalid Mobile Number. Please try again!</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row enterOTPSection hide">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <h5 for="otbTB">
+                                    Please Enter the OTP sent to:
+                                    <span class="phoneOTP" style="font-weight: bold; padding-left:5px"></span>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <label for="otbTB">OTP Number</label>
+                                <span>
+                                    <input type="text" name="otbTB" id="otbTB" class="otbTB form-control" placeholder="Enter OTP" aria-describedby="basic-addon2" />
+                                </span>
+                                <h6 class="hide invalidOTPMsg" style="color: #ff0000">Invalid OTP. Please try again!</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <button class="btn btn-primary" onclick="authenticatePhoneNumber($('#mobileTB').val(),$('#otbTB').val())">Sign In</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row loginSuccessMessage" style="text-align: center;display:none">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <span style="font-size: 14px; color:#00ff21">Login Successful!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

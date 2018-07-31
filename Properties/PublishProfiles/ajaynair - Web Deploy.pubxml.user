@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA6smoAG729UK/ddZ+MELWXAAAAAACAAAAAAADZgAAwAAAABAAAABjXw3G26EgogdEPRcfjWZrAAAAAASAAACgAAAAEAAAAJC2nD+7fp5/FkZ8ZpZM95mAAAAAylYFaUZvkH8of0r2Nu7ezmmRqE5xpCGmpM9FphTT/h24EvgDL0L9vCH7Cbj4YONv1S/lTH085iMrsyS0CllUBG1rKgWOplbCwmseaYxUDqiB2q7LMRVRQj3JDWlZFQ/ahvaaXw/ud+lKzrOOkXy5W3qYLopncnn5s1k+/h17VxkUAAAA2CjwQV6myf3Vn0SyEjrpDO1dfI0=</EncryptedPassword>
+    <_PublishTargetUrl>C:\Users\ajay.nair\Desktop\Website\DanalWebsitePublish</_PublishTargetUrl>
+  </PropertyGroup>
+</Project>
